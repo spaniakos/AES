@@ -123,7 +123,7 @@ class AES
 	*/
 	void get_IV(byte* out);
 		
-	/** \fn calc_size_n_pad(uint8_t p_size)
+	/** \fn calc_size_n_pad(int p_size)
 	* \brief calculates the size of the plaintext and the padding
 	* 
 	* calculates the size of theplaintext with the padding

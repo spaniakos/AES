@@ -89,9 +89,3 @@ processors, here's the licence terms:
    in-place encryption, note.
 
 */
-
-/*
-	The code has been edited by George Spanos <spaniakos@gmail.com>
-	Many function have been added in order to be more user friendly.
-	Added support for Intel Galileo and Raspberry pi
-*/

@@ -13,9 +13,6 @@ byte plain[] = "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST";
 //real iv = iv x2 ex: 01234567 = 0123456701234567
 unsigned long long int my_iv = 01234567;
 
-byte cipher [4*N_BLOCK] ;
-byte check [4*N_BLOCK] ;
-
 int main(int argc, char** argv)
 {
   printf("\n===testng mode\n") ;
@@ -25,7 +22,7 @@ int main(int argc, char** argv)
   }
 }
 
-void prekey (int bits, int blocks)
+void prekey (int bits)
 {
   aes.iv_inc();
   byte iv [N_BLOCK] ;
@@ -33,7 +30,9 @@ void prekey (int bits, int blocks)
   aes.calc_size_n_pad(sizeof(plain));
   byte plain_p[aes.get_size()];
   aes.padPlaintext(plain,plain_p);
-  
+  byte cipher [aes.get_size()] ;
+  byte check [aes.get_size()] ;
+  int blocks = aes.get_size() / N_BLOCK;
   unsigned long ms = aes.millis();
   byte succ = aes.set_key (key, bits) ;
   ms = aes.millis()-ms;
@@ -78,5 +77,5 @@ void prekey (int bits, int blocks)
 
 void prekey_test ()
 {
-  prekey (128, 4) ;
+  prekey (128) ;
 }
