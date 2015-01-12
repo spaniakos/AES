@@ -33,10 +33,10 @@ void prekey (int bits)
   byte cipher [aes.get_size()] ;
   byte check [aes.get_size()] ;
   int blocks = aes.get_size() / N_BLOCK;
-  unsigned long ms = aes.millis();
+  double ms = aes.millis();
   byte succ = aes.set_key (key, bits) ;
   ms = aes.millis()-ms;
-  printf("set_key %i -> %i took %lu ms",bits,(int) succ,ms);
+  printf("set_key %i -> %i took %f ms",bits,(int) succ,ms);
   ms = aes.millis () ;
   if (blocks == 1)
     succ = aes.encrypt (plain_p, cipher) ;
@@ -46,7 +46,7 @@ void prekey (int bits)
     succ = aes.cbc_encrypt (plain_p, cipher, blocks, iv) ;
   }
   ms = aes.millis () - ms ;
-  printf("\nencrypt %i took %lu ms",(int)succ,ms);
+  printf("\nencrypt %i took %f ms",(int)succ,ms);
   ms = aes.millis () ;
   if (blocks == 1)
     succ = aes.decrypt (cipher, plain_p) ;
@@ -56,7 +56,7 @@ void prekey (int bits)
     succ = aes.cbc_decrypt (cipher, check, blocks, iv) ;
   }
   ms = aes.millis () - ms ;
-  printf("\ndecrypt %i took %lu ms",(int)succ,ms);
+  printf("\ndecrypt %i took %f ms",(int)succ,ms);
 
   printf("\n\nPLAIN :");
   aes.printArray(plain_p);

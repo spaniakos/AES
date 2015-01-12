@@ -507,7 +507,7 @@ void AES::printArray(byte output[],int sizel)
 /******************************************************************************/
 
 #if defined(AES_LINUX)
-unsigned long AES::millis(){
+double AES::millis(){
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec + 0.000001 * tv.tv_usec);
 }

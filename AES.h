@@ -168,7 +168,7 @@ class AES
 	void printArray(byte output[],bool p_pad = false);
 	void printArray(byte output[],int sizel);
 	#if defined(AES_LINUX)
-		unsigned long millis();
+		double millis();
 	#endif
  private:
   int round ;
