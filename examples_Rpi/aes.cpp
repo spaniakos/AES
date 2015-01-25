@@ -1,3 +1,15 @@
+
+
+
+
+
+
+
+
+
+
+
+
 #include <AES.h>
 #include "printf.h"
 
@@ -17,61 +29,27 @@ int main(int argc, char** argv)
 {
   printf("\n===testng mode\n") ;
 
-  for (int i=0;i<10;i++){
+  for (int i=0;i<1;i++){
     prekey_test () ;
   }
 }
 
 void prekey (int bits)
 {
-  aes.iv_inc();
   byte iv [N_BLOCK] ;
-  
-  aes.calc_size_n_pad(sizeof(plain));
-  byte plain_p[aes.get_size()];
-  aes.padPlaintext(plain,plain_p);
-  byte cipher [aes.get_size()] ;
-  byte check [aes.get_size()] ;
-  int blocks = aes.get_size() / N_BLOCK;
-  double ms = aes.millis();
-  byte succ = aes.set_key (key, bits) ;
-  ms = aes.millis()-ms;
-  printf("set_key %i -> %i took %f ms",bits,(int) succ,ms);
-  ms = aes.millis () ;
-  if (blocks == 1)
-    succ = aes.encrypt (plain_p, cipher) ;
-  else
-  {
-    aes.get_IV(iv);
-    succ = aes.cbc_encrypt (plain_p, cipher, blocks, iv) ;
-  }
-  ms = aes.millis () - ms ;
-  printf("\nencrypt %i took %f ms",(int)succ,ms);
-  ms = aes.millis () ;
-  if (blocks == 1)
-    succ = aes.decrypt (cipher, plain_p) ;
-  else
-  {
-    aes.get_IV(iv);
-    succ = aes.cbc_decrypt (cipher, check, blocks, iv) ;
-  }
-  ms = aes.millis () - ms ;
-  printf("\ndecrypt %i took %f ms",(int)succ,ms);
+  byte plain_p[sizeof(plain) + (N_BLOCK - (sizeof(plain) % 8)) - 1];
+  byte cipher[sizeof(plain_p)];
+  aes.do_aes_encrypt(plain,sizeof(plain),cipher,key,bits);
+  aes.get_IV(iv);
+  aes.do_aes_dencrypt(cipher,aes.get_size(),plain_p,key,bits,iv);
+  //normally u have sizeof(cipher) but if its in the same sketch you cannot determin it dynamically
 
   printf("\n\nPLAIN :");
-  aes.printArray(plain_p);
+  aes.printArray(plain);
   printf("\nCIPHER:");
   aes.printArray(cipher);
-  printf("\nCHECK :");
-  aes.printArray(check,(bool)true);
-  printf("\nIV    :");
-  aes.printArray(iv,16);
-  
-  bool ok = aes.CheckPad(plain_p,sizeof(plain_p));
-  if (ok)
-    printf("padding ok!\n");
-  else
-    printf("padding corrupted!\n");
+  printf("\nPlain2:");
+  aes.printArray(plain_p);
   printf("\n============================================================\n");
 }
 

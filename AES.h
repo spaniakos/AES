@@ -160,7 +160,7 @@ class AES
 	* @param out byte pointer that gets the IV.
 	* @return none, the IV is writed to the out pointer.
 	*/
-	void get_IV(byte* out);
+	void get_IV(byte *out);
 		
 	/** Calculates the size of the plaintext and the padding.
 	 * 
@@ -201,7 +201,7 @@ class AES
 	 * @param output[] the string of the text in a byte array
 	 * @param p_pad optional, used to print with out the padding characters
 	*/
-	void printArray(byte output[],bool p_pad = false);
+	void printArray(byte output[],bool p_pad = true);
 	
 	/** Prints the array given.
 	 * 
