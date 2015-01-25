@@ -285,9 +285,6 @@ class AES
  *
  * This is an example of how to use AES in CBC mode easily.
  * The text and keys can be either in HEX or String format.<br />
- * This Demonstrates the user friendly implementation.<br />
- * <b>NOTE:</b><br />
- * calc_size Function calculates the size for the ciphertext.
  */
  
  /**
@@ -297,9 +294,6 @@ class AES
  *
  * This is an example of how to use AES in CBC mode easily.
  * The text and keys can be either in HEX or String format.<br />
- * This Demonstrates the user friendly implementation.<br />
- * <b>NOTE:</b><br />
- * calc_size Function calculates the size for the ciphertext.
  */
  
  /**

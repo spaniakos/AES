@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 void prekey (int bits)
 {
   byte iv [N_BLOCK] ;
-  byte plain_p[calc_size(sizeof(plain))];
+  byte plain_p[sizeof(plain) + (N_BLOCK - (sizeof(plain) % 16)) - 1];
   byte cipher[sizeof(plain_p)];
   aes.do_aes_encrypt(plain,sizeof(plain),cipher,key,bits);
   aes.get_IV(iv);
@@ -44,9 +44,4 @@ void prekey (int bits)
 void prekey_test ()
 {
   prekey (128) ;
-}
-
-int calc_size(int size){
-	size = size + (16 - (size % 16)) - 1;
-	return size;
 }
