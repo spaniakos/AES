@@ -30,7 +30,7 @@ void loop ()
 void prekey (int bits)
 {
   byte iv [N_BLOCK] ;
-  byte plain_p[sizeof(plain) + (N_BLOCK - (sizeof(plain) % 8)) - 1];
+  byte plain_p[sizeof(plain) + (N_BLOCK - (sizeof(plain) % 16)) - 1];
   byte cipher[sizeof(plain_p)];
   aes.do_aes_encrypt(plain,sizeof(plain),cipher,key,bits);
   aes.get_IV(iv);
