@@ -112,7 +112,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">void</span> prekey (<span class="keywordtype">int</span> bits)</div>
 <div class="line">{</div>
 <div class="line">  byte iv [N_BLOCK] ;</div>
-<div class="line">  byte plain_p[<span class="keyword">sizeof</span>(plain) + (N_BLOCK - (<span class="keyword">sizeof</span>(plain) % 8)) - 1];</div>
+<div class="line">  byte plain_p[<span class="keyword">sizeof</span>(plain) + (N_BLOCK - (<span class="keyword">sizeof</span>(plain) % 16)) - 1];</div>
 <div class="line">  byte cipher[<span class="keyword">sizeof</span>(plain_p)];</div>
 <div class="line">  aes.<a name="a1"></a><a class="code" href="classAES.html#adaeab53c0a5ce4a6b1634650fb0475f2">do_aes_encrypt</a>(plain,<span class="keyword">sizeof</span>(plain),cipher,key,bits);</div>
 <div class="line">  aes.<a name="a2"></a><a class="code" href="classAES.html#a4c540bb245286e6f6419980f8129465c">get_IV</a>(iv);</div>
@@ -135,7 +135,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 25 2015 20:36:41 for AES Encryption Library for Arduino and Raspberry Pi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jan 25 2015 22:22:23 for AES Encryption Library for Arduino and Raspberry Pi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
