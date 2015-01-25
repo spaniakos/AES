@@ -211,6 +211,11 @@ class AES
 	 * @param sizel the size of the array.
 	*/
 	void printArray(byte output[],int sizel);
+	
+	void do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits);
+	void do_aes_dencrypt(byte *cipher,int size_c,byte *plain,byte *key, int bits, byte ivl [N_BLOCK]);
+	void set_size(int sizel);
+	byte cbc_encrypt (byte * plain, byte * cipher, int n_block) ;
 	#if defined(AES_LINUX)
 		/**
 		 * used in linux in order to retrieve the time in milliseconds.

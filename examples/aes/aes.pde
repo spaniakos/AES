@@ -14,7 +14,7 @@ void setup ()
 {
   Serial.begin (57600) ;
   printf_begin();
-  delay(500);
+  delay(1000);
   printf("\n===testng mode\n") ;
   
 //  otfly_test () ;
@@ -31,46 +31,21 @@ void prekey (int bits)
 {
   aes.iv_inc();
   byte iv [N_BLOCK] ;
+  byte plain_p[sizeof(plain) + N_BLOCK];
+  byte cipher[sizeof(plain_p)];
   
-  aes.calc_size_n_pad(sizeof(plain));
-  byte plain_p[aes.get_size()];
-  aes.padPlaintext(plain,plain_p);;
-  byte cipher [aes.get_size()] ;
-  byte check [aes.get_size()] ;
-  int blocks = aes.get_size() / N_BLOCK;
-  unsigned long ms_key = micros();
-  byte succ = aes.set_key (key, bits) ;
-  ms_key = micros()-ms_key;
-  printf("set_key %i -> %i took %lu micros",bits,(int) succ,ms_key);
-  unsigned long ms = micros () ;
-  if (blocks == 1)
-    succ = aes.encrypt (plain_p, cipher) ;
-  else
-  {
-    aes.get_IV(iv);
-    succ = aes.cbc_encrypt (plain_p, cipher, blocks, iv) ;
-  }
-  ms = micros () - ms ;
-  printf("\nencrypt %i took %lu micros",(int)succ,ms);
-  ms = micros () ;
-  if (blocks == 1)
-    succ = aes.decrypt (cipher, plain_p) ;
-  else
-  {
-    aes.get_IV(iv);
-    succ = aes.cbc_decrypt (cipher, check, blocks, iv) ;
-  }
-  ms = micros() - ms ;
-  printf("\ndecrypt %i took %lu micros",(int)succ,ms);
-
+  aes.do_aes_encrypt(plain,sizeof(plain),cipher,key,bits);
+  aes.get_IV(iv);
+  aes.do_aes_dencrypt(cipher,aes.get_size(),plain,key,bits,iv);
+  //normally u have sizeof(cipher) but if its in the same sketch you cannot determin it dynamically
+  
+Serial.println(sizeof(plain_p));
+Serial.println(sizeof(cipher));	
+  
   printf("\n\nPLAIN :");
   aes.printArray(plain_p);
   printf("\nCIPHER:");
   aes.printArray(cipher);
-  printf("\nCHECK :");
-  aes.printArray(check,(bool)true);
-  printf("\nIV    :");
-  aes.printArray(iv,16);
   printf("\n============================================================\n");
 }
 

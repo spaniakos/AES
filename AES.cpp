@@ -512,3 +512,39 @@ double AES::millis(){
 	return (tv.tv_sec + 0.000001 * tv.tv_usec);
 }
 #endif
+
+void AES::do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits){
+	iv_inc();
+	calc_size_n_pad(size_p);
+	byte plain_p[get_size()];
+	padPlaintext(plain,plain_p);
+	int blocks = get_size() / N_BLOCK;
+	set_key (key, bits) ;
+	cbc_encrypt (plain_p, cipher, blocks);
+}
+
+void AES::do_aes_dencrypt(byte *cipher,int size_c,byte *plain,byte *key, int bits, byte ivl [N_BLOCK]){
+	set_size(size_c);
+	int blocks = size_c / N_BLOCK;
+	set_key (key, bits);
+	cbc_decrypt (cipher,plain, blocks, ivl);
+}
+
+byte AES::cbc_encrypt (byte * plain, byte * cipher, int n_block)
+{
+  while (n_block--)
+    {
+      xor_block (iv, plain) ;
+      if (encrypt (iv, iv) != SUCCESS)
+        return FAILURE ;
+      copy_n_bytes (cipher, iv, N_BLOCK) ;
+      plain  += N_BLOCK ;
+      cipher += N_BLOCK ;
+    }
+  return SUCCESS ;
+}
+
+void AES::set_size(int sizel){
+	size = sizel;
+}
+
