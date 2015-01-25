@@ -29,23 +29,20 @@ void loop ()
 
 void prekey (int bits)
 {
-  aes.iv_inc();
   byte iv [N_BLOCK] ;
-  byte plain_p[sizeof(plain) + N_BLOCK];
+  byte plain_p[sizeof(plain) + (N_BLOCK - (sizeof(plain) % 8)) - 1];
   byte cipher[sizeof(plain_p)];
-  
   aes.do_aes_encrypt(plain,sizeof(plain),cipher,key,bits);
   aes.get_IV(iv);
-  aes.do_aes_dencrypt(cipher,aes.get_size(),plain,key,bits,iv);
+  aes.do_aes_dencrypt(cipher,aes.get_size(),plain_p,key,bits,iv);
   //normally u have sizeof(cipher) but if its in the same sketch you cannot determin it dynamically
-  
-Serial.println(sizeof(plain_p));
-Serial.println(sizeof(cipher));	
-  
+
   printf("\n\nPLAIN :");
-  aes.printArray(plain_p);
+  aes.printArray(plain);
   printf("\nCIPHER:");
   aes.printArray(cipher);
+  printf("\nPlain2:");
+  aes.printArray(plain_p);
   printf("\n============================================================\n");
 }
 

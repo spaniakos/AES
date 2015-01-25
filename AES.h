@@ -70,14 +70,14 @@ class AES
 	void clean () ;  // delete key schedule after use
 	
 	/** copying and xoring utilities.
-	 *  @param *dest byte pointer of the destination array.
+	 *  @param *AESt byte pointer of the AEStination array.
 	 *  @param *src byte pointer of the source array.
 	 *  @param n byte, indicating the sizeof the bytes to be copied.
 	 *  @note this is an alternative for memcpy(void *s1,const void *s2, site_t n),
 	 *  i have not updated the function in the implementation yet, but it is considered a future plan.
 	 *
 	 */
-	void copy_n_bytes (byte * dest, byte * src, byte n) ;
+	void copy_n_bytes (byte * AESt, byte * src, byte n) ;
 
 	/** Encrypt a single block of 16 bytes .
 	 *  @param plain[N_BLOCK] Array of the plaintext.
@@ -103,6 +103,16 @@ class AES
 	 *
 	 */
 	byte cbc_encrypt (byte * plain, byte * cipher, int n_block, byte iv [N_BLOCK]) ;
+	
+	/** CBC encrypt a number of blocks (input and return an IV).
+	 *  
+	 *  @param *plain Pointer, points to the plaintex.
+	 *  @param *cipher Pointer, points to the ciphertext that will be created.
+	 *  @param n_block integer, indicated the number of blocks to be ciphered.
+	 *  @Return 0 if SUCCESS or -1 if FAILURE
+	 *
+	 */
+	byte cbc_encrypt (byte * plain, byte * cipher, int n_block) ;
 
 
 	/**  Decrypt a single block of 16 bytes 
@@ -153,6 +163,13 @@ class AES
 	 * thus, the size of the ciphertext.
 	 */
 	int get_size();
+	
+	/** Setter method for size
+	 *
+	 * This function sets the size of the plaintext+pad
+	 * 
+	 */
+	void set_size(int sizel);
 	
 	/** Getter method for IV
 	* 
@@ -212,10 +229,29 @@ class AES
 	*/
 	void printArray(byte output[],int sizel);
 	
+	/** User friendly implementation of AES-CBC encryption.
+	 * 
+	 * @param *plain pointer to the plaintext
+	 * @param size_p size of the plaintext
+	 * @param *cipher pointer to the ciphertext
+	 * @param *key pointer to the key that will be used.
+	 * @param bits bits of the encryption/decrpytion
+	 * @note The key will be stored in class variable.
+	 */
 	void do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits);
+	
+	/** User friendly implementation of AES-CBC decryption.
+	 * 
+	 * @param *cipher pointer to the ciphertext
+	 * @param size_c size of the ciphertext
+	 * @param *plain pointer to the plaintext
+	 * @param *key pointer to the key that will be used.
+	 * @param bits bits of the encryption/decrpytion
+	 * @param ivl[N_BLOCK] the initialization vector IV that will be used for decryption.
+	 * @note The key will be stored in class variable.
+	 */
 	void do_aes_dencrypt(byte *cipher,int size_c,byte *plain,byte *key, int bits, byte ivl [N_BLOCK]);
-	void set_size(int sizel);
-	byte cbc_encrypt (byte * plain, byte * cipher, int n_block) ;
+
 	#if defined(AES_LINUX)
 		/**
 		 * used in linux in order to retrieve the time in milliseconds.
@@ -241,3 +277,106 @@ class AES
 
 
 #endif
+
+/**
+ * @example aes.ino
+ * <b>For Arduino</b><br>
+ * <b>Updated: spaniakos 2015 </b><br>
+ *
+ * This is an example of how to use AES in CBC mode easily.
+ * The text and keys can be either in HEX or String format.<br />
+ */
+ 
+ /**
+ * @example aes.cpp
+ * <b>For Rasberry pi</b><br>
+ * <b>Updated: spaniakos 2015 </b><br>
+ *
+ * This is an example of how to use AES in CBC mode easily.
+ * The text and keys can be either in HEX or String format.<br />
+ */
+ 
+ /**
+ * @example test_vectors.ino
+ * <b>For Arduino</b><br>
+ * <b>Updated: spaniakos 2015 </b><br>
+ *
+ * This is an example of monte carlo test vectors, in order to justify the effectiveness of the algorithm.<br />
+ * plus is a classical approach to the AES encryption library with out the easy to use add-on modifications.
+ */
+ 
+ /**
+ * @example test_vectors.cpp
+ * <b>For Rasberry pi</b><br>
+ * <b>Updated: spaniakos 2015 </b><br>
+ *
+ * This is an example of monte carlo test vectors, in order to justify the effectiveness of the algorithm.<br />
+ * plus is a classical approach to the AES encryption library with out the easy to use add-on modifications.
+ */
+
+/**
+ * @mainpage AES library for Arduino and Raspberry pi.
+ *
+ * @section Goals design Goals
+ *
+ * This library is AESigned to be...
+ * @li Fast and efficient.
+ * @li Able to effectivelly encrypt and decrypt any size of string.
+ * @li Able to encrypt and decrypt using AES
+ * @li Able to encrypt and decrypt using AES-CBC
+ * @li Easy for the user to use in his programs.
+ *
+ * @section Acknowlegments Acknowlegments
+ * This is an AES library for the Arduino, based on tzikis's AES library, which you can find <a href= "https://github.com/tzikis/arduino">here:</a>.<br />
+ * Tzikis library was based on scottmac`s library, which you can find <a href="https://github.com/scottmac/arduino">here:</a><br /> 
+ * 
+ * @section Installation Installation
+ * <h3>Arduino</h3>
+ * Create a folder named _AES_ in the _libraries_ folder inside your Arduino sketch folder. If the 
+ * libraries folder doesn't exist, create it. Then copy everything inside. (re)launch the Arduino IDE.<br />
+ * You're done. Time for a mojito
+ * 
+ * <h3>Raspberry  pi</h3>
+ * <b>install</b><br /><br />
+ * 
+ * sudo make install<br />
+ * cd examples_Rpi<br />
+ * make<br /><br />
+ * 
+ * <b>What to do after changes to the library</b><br /><br />
+ * sudo make clean<br />
+ * sudo make install<br />
+ * cd examples_Rpi<br />
+ * make clean<br />
+ * make<br /><br />
+ * <b>What to do after changes to a sketch</b><br /><br />
+ * cd examples_Rpi<br />
+ * make <sketch><br /><br />
+ * or <br />
+ * make clean<br />
+ * make<br /><br /><br />
+ * <b>How to start a sketch</b><br /><br />
+ * cd examples_Rpi<br />
+ * sudo ./<sketch><br /><br />
+ * 
+ * @section News News
+ *
+ * If issues are discovered with the documentation, please report them <a href="https://github.com/spaniakos/spaniakos.github.io/issues"> here</a>
+ * @section Useful Useful References
+ *
+ * Please refer to:
+ *
+ * @li <a href="http://spaniakos.github.io/AES/classAES.html"><b>AES</b> Class Documentation</a>
+ * @li <a href="https://github.com/spaniakos/AES/archive/master.zip"><b>Download</b></a>
+ * @li <a href="https://github.com/spaniakos/AES/"><b>Source Code</b></a>
+ * @li <a href="http://spaniakos.github.io/">All spaniakos Documentation Main Page</a>
+ *
+ * @section Board_Support Board Support
+ *
+ * Most standard Arduino based boards are supported:
+ * - Arduino
+ * - Intel Galileo support
+ * - Raspberry Pi Support
+ * 
+ * - The library has not been tested to other boards, but it should suppport ATMega 328 based boards,Mega Boards,Arduino Due,ATTiny board
+ */

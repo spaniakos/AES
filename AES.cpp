@@ -369,6 +369,20 @@ byte AES::cbc_encrypt (byte * plain, byte * cipher, int n_block, byte iv [N_BLOC
   return SUCCESS ;
 }
 
+byte AES::cbc_encrypt (byte * plain, byte * cipher, int n_block)
+{
+  while (n_block--)
+    {
+      xor_block (iv, plain) ;
+      if (encrypt (iv, iv) != SUCCESS)
+        return FAILURE ;
+      copy_n_bytes (cipher, iv, N_BLOCK) ;
+      plain  += N_BLOCK ;
+      cipher += N_BLOCK ;
+    }
+  return SUCCESS ;
+}
+
 /******************************************************************************/
 
 byte AES::decrypt (byte plain [N_BLOCK], byte cipher [N_BLOCK])
@@ -431,6 +445,13 @@ void AES::iv_inc(){
 int AES::get_size(){
 	return size;
 }
+
+/******************************************************************************/
+
+void AES::set_size(int sizel){
+	size = sizel;
+}
+
 
 /******************************************************************************/
 
@@ -505,14 +526,8 @@ void AES::printArray(byte output[],int sizel)
   printf_P(PSTR("\n"));
 }
 
-/******************************************************************************/
 
-#if defined(AES_LINUX)
-double AES::millis(){
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec + 0.000001 * tv.tv_usec);
-}
-#endif
+/******************************************************************************/
 
 void AES::do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits){
 	iv_inc();
@@ -524,6 +539,8 @@ void AES::do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits
 	cbc_encrypt (plain_p, cipher, blocks);
 }
 
+/******************************************************************************/
+
 void AES::do_aes_dencrypt(byte *cipher,int size_c,byte *plain,byte *key, int bits, byte ivl [N_BLOCK]){
 	set_size(size_c);
 	int blocks = size_c / N_BLOCK;
@@ -531,21 +548,12 @@ void AES::do_aes_dencrypt(byte *cipher,int size_c,byte *plain,byte *key, int bit
 	cbc_decrypt (cipher,plain, blocks, ivl);
 }
 
-byte AES::cbc_encrypt (byte * plain, byte * cipher, int n_block)
-{
-  while (n_block--)
-    {
-      xor_block (iv, plain) ;
-      if (encrypt (iv, iv) != SUCCESS)
-        return FAILURE ;
-      copy_n_bytes (cipher, iv, N_BLOCK) ;
-      plain  += N_BLOCK ;
-      cipher += N_BLOCK ;
-    }
-  return SUCCESS ;
-}
 
-void AES::set_size(int sizel){
-	size = sizel;
-}
+/******************************************************************************/
 
+#if defined(AES_LINUX)
+double AES::millis(){
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec + 0.000001 * tv.tv_usec);
+}
+#endif
