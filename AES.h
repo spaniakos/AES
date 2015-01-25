@@ -143,7 +143,7 @@ class AES
 	/** Sets IV (initialization vector) and IVC (IV counter).
 	 *  This function changes the ivc and iv variables needed for AES.
 	 *
-	 *  @param IVC int or hex value of iv , ex. 0x0000000000000001
+	 *  @param IVCl int or hex value of iv , ex. 0x0000000000000001
 	 *  @note example:
 	 *  @code unsigned long long int my_iv = 01234567; @endcode
 	*/
@@ -205,7 +205,7 @@ class AES
 	 * This functions checks the padding of the plaintext.
 	 * 
 	 * @param in the string of the plaintext in a byte array
-	 * @param the size of the string
+	 * @param size the size of the string
 	 * @return true if correct / false if not
 	 */
 	bool CheckPad(byte* in,int size);
@@ -321,12 +321,12 @@ class AES
  *
  * This library is AESigned to be...
  * @li Fast and efficient.
- * @li Able to effectivelly encrypt and decrypt any size of string.
+ * @li Able to effectively encrypt and decrypt any size of string.
  * @li Able to encrypt and decrypt using AES
  * @li Able to encrypt and decrypt using AES-CBC
  * @li Easy for the user to use in his programs.
  *
- * @section Acknowlegments Acknowlegments
+ * @section Acknowledgements Acknowledgements
  * This is an AES library for the Arduino, based on tzikis's AES library, which you can find <a href= "https://github.com/tzikis/arduino">here:</a>.<br />
  * Tzikis library was based on scottmac`s library, which you can find <a href="https://github.com/scottmac/arduino">here:</a><br /> 
  * 
