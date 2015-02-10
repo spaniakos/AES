@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
@@ -115,6 +114,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abc514d1129789a60d60127f151450e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b8023781d7ddd13930bda0fd4312369"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#a2b8023781d7ddd13930bda0fd4312369">cbc_decrypt</a> (byte *cipher, byte *plain, int n_block, byte <a class="el" href="classAES.html#abb4d5edcd5d96a54177f57317f626a26">iv</a>[N_BLOCK])</td></tr>
 <tr class="separator:a2b8023781d7ddd13930bda0fd4312369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7242c64fc6c53152841ecbd840ac2a81"><td class="memItemLeft" align="right" valign="top">byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#a7242c64fc6c53152841ecbd840ac2a81">cbc_decrypt</a> (byte *cipher, byte *plain, int n_block)</td></tr>
+<tr class="separator:a7242c64fc6c53152841ecbd840ac2a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86f4dfa2c855aa16ef847bb1a46c66bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#a86f4dfa2c855aa16ef847bb1a46c66bd">set_IV</a> (unsigned long long int IVCl)</td></tr>
 <tr class="separator:a86f4dfa2c855aa16ef847bb1a46c66bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa64b7b326d6016963b56293323590624"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#aa64b7b326d6016963b56293323590624">iv_inc</a> ()</td></tr>
@@ -135,10 +136,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6b0db893a71f8650d3e59441c23fc9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add8ddd9cce8b4de87b9ef2ff2f5ddb29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#add8ddd9cce8b4de87b9ef2ff2f5ddb29">printArray</a> (byte output[], int sizel)</td></tr>
 <tr class="separator:add8ddd9cce8b4de87b9ef2ff2f5ddb29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a417f2c3f01927bc88c56462a0891f3c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#a417f2c3f01927bc88c56462a0891f3c2">do_aes_encrypt</a> (byte *plain, int size_p, byte *cipher, byte *key, int bits, byte ivl[N_BLOCK])</td></tr>
+<tr class="separator:a417f2c3f01927bc88c56462a0891f3c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaeab53c0a5ce4a6b1634650fb0475f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#adaeab53c0a5ce4a6b1634650fb0475f2">do_aes_encrypt</a> (byte *plain, int size_p, byte *cipher, byte *key, int bits)</td></tr>
 <tr class="separator:adaeab53c0a5ce4a6b1634650fb0475f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1593e6f11d6ff87d5048f42c7c3b509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#ad1593e6f11d6ff87d5048f42c7c3b509">do_aes_dencrypt</a> (byte *cipher, int size_c, byte *plain, byte *key, int bits, byte ivl[N_BLOCK])</td></tr>
-<tr class="separator:ad1593e6f11d6ff87d5048f42c7c3b509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd66d5b1be883ee03f2f1d99aa0611da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#afd66d5b1be883ee03f2f1d99aa0611da">do_aes_decrypt</a> (byte *cipher, int size_c, byte *plain, byte *key, int bits, byte ivl[N_BLOCK])</td></tr>
+<tr class="separator:afd66d5b1be883ee03f2f1d99aa0611da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a649781b684fca61689d5ddbe7d6f498a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#a649781b684fca61689d5ddbe7d6f498a">do_aes_decrypt</a> (byte *cipher, int size_c, byte *plain, byte *key, int bits)</td></tr>
+<tr class="separator:a649781b684fca61689d5ddbe7d6f498a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cfe8772e20723d2f1a99427fd7067c7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAES.html#a4cfe8772e20723d2f1a99427fd7067c7">millis</a> ()</td></tr>
 <tr class="separator:a4cfe8772e20723d2f1a99427fd7067c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -489,6 +494,47 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a7242c64fc6c53152841ecbd840ac2a81"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">byte AES::cbc_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">byte *&#160;</td>
+          <td class="paramname"><em>cipher</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte *&#160;</td>
+          <td class="paramname"><em>plain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n_block</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>CBC decrypt a number of blocks (input and return an IV)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*cipher</td><td>Pointer, points to the ciphertext that will be created. </td></tr>
+    <tr><td class="paramname">*plain</td><td>Pointer, points to the plaintex. </td></tr>
+    <tr><td class="paramname">n_block</td><td>integer, indicated the number of blocks to be ciphered.  0 if SUCCESS or -1 if FAILURE </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a86f4dfa2c855aa16ef847bb1a46c66bd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -545,7 +591,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter method for size</p>
 <p>This function return the size </p><dl class="section return"><dt>Returns</dt><dd>an integer, that is the size of the of the padded plaintext, thus, the size of the ciphertext. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="aes_8cpp-example.html#a4">aes.cpp</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="aes_8cpp-example.html#a3">aes.cpp</a>.</dd>
 </dl>
 </div>
 </div>
@@ -720,7 +766,7 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="aes_8cpp-example.html#a5">aes.cpp</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="aes_8cpp-example.html#a4">aes.cpp</a>.</dd>
 </dl>
 </div>
 </div>
@@ -757,6 +803,70 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
+</div>
+</div>
+<a class="anchor" id="a417f2c3f01927bc88c56462a0891f3c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AES::do_aes_encrypt </td>
+          <td>(</td>
+          <td class="paramtype">byte *&#160;</td>
+          <td class="paramname"><em>plain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte *&#160;</td>
+          <td class="paramname"><em>cipher</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bits</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>ivl</em>[N_BLOCK]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>User friendly implementation of AES-CBC encryption.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*plain</td><td>pointer to the plaintext </td></tr>
+    <tr><td class="paramname">size_p</td><td>size of the plaintext </td></tr>
+    <tr><td class="paramname">*cipher</td><td>pointer to the ciphertext </td></tr>
+    <tr><td class="paramname">*key</td><td>pointer to the key that will be used. </td></tr>
+    <tr><td class="paramname">bits</td><td>bits of the encryption/decrpytion </td></tr>
+    <tr><td class="paramname">ivl[N_BLOCK]</td><td>the initialization vector IV that will be used for encryption. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The key will be stored in class variable. </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="aes_8cpp-example.html#a1">aes.cpp</a>.</dd>
+</dl>
 </div>
 </div>
 <a class="anchor" id="adaeab53c0a5ce4a6b1634650fb0475f2"></a>
@@ -812,16 +922,15 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The key will be stored in class variable. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="aes_8cpp-example.html#a1">aes.cpp</a>.</dd>
-</dl>
+
 </div>
 </div>
-<a class="anchor" id="ad1593e6f11d6ff87d5048f42c7c3b509"></a>
+<a class="anchor" id="afd66d5b1be883ee03f2f1d99aa0611da"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void AES::do_aes_dencrypt </td>
+          <td class="memname">void AES::do_aes_decrypt </td>
           <td>(</td>
           <td class="paramtype">byte *&#160;</td>
           <td class="paramname"><em>cipher</em>, </td>
@@ -876,8 +985,63 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The key will be stored in class variable. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="aes_8cpp-example.html#a3">aes.cpp</a>.</dd>
+
+</div>
+</div>
+<a class="anchor" id="a649781b684fca61689d5ddbe7d6f498a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AES::do_aes_decrypt </td>
+          <td>(</td>
+          <td class="paramtype">byte *&#160;</td>
+          <td class="paramname"><em>cipher</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size_c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte *&#160;</td>
+          <td class="paramname"><em>plain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bits</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>User friendly implementation of AES-CBC decryption.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*cipher</td><td>pointer to the ciphertext </td></tr>
+    <tr><td class="paramname">size_c</td><td>size of the ciphertext </td></tr>
+    <tr><td class="paramname">*plain</td><td>pointer to the plaintext </td></tr>
+    <tr><td class="paramname">*key</td><td>pointer to the key that will be used. </td></tr>
+    <tr><td class="paramname">bits</td><td>bits of the encryption/decrpytion </td></tr>
+  </table>
+  </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>The key will be stored in class variable. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a4cfe8772e20723d2f1a99427fd7067c7"></a>
@@ -1070,7 +1234,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 25 2015 22:48:17 for AES Encryption Library for Arduino and Raspberry Pi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 10 2015 15:27:47 for AES Encryption Library for Arduino and Raspberry Pi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

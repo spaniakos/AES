@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
@@ -114,13 +113,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">  byte iv [N_BLOCK] ;</div>
 <div class="line">  byte plain_p[<span class="keyword">sizeof</span>(plain) + (N_BLOCK - (<span class="keyword">sizeof</span>(plain) % 16)) - 1];</div>
 <div class="line">  byte cipher[<span class="keyword">sizeof</span>(plain_p)];</div>
-<div class="line">  aes.<a name="a1"></a><a class="code" href="classAES.html#adaeab53c0a5ce4a6b1634650fb0475f2">do_aes_encrypt</a>(plain,<span class="keyword">sizeof</span>(plain),cipher,key,bits);</div>
+<div class="line">  aes.<a name="a1"></a><a class="code" href="classAES.html#a417f2c3f01927bc88c56462a0891f3c2">do_aes_encrypt</a>(plain,<span class="keyword">sizeof</span>(plain),cipher,key,bits);</div>
 <div class="line">  aes.<a name="a2"></a><a class="code" href="classAES.html#a4c540bb245286e6f6419980f8129465c">get_IV</a>(iv);</div>
-<div class="line">  aes.<a name="a3"></a><a class="code" href="classAES.html#ad1593e6f11d6ff87d5048f42c7c3b509">do_aes_dencrypt</a>(cipher,aes.<a name="a4"></a><a class="code" href="classAES.html#ac333f0da98cb09087770fd06d276c6aa">get_size</a>(),plain_p,key,bits,iv);</div>
+<div class="line">  aes.do_aes_dencrypt(cipher,aes.<a name="a3"></a><a class="code" href="classAES.html#ac333f0da98cb09087770fd06d276c6aa">get_size</a>(),plain_p,key,bits,iv);</div>
 <div class="line">  <span class="comment">//normally u have sizeof(cipher) but if its in the same sketch you cannot determin it dynamically</span></div>
 <div class="line"></div>
 <div class="line">  printf(<span class="stringliteral">&quot;\n\nPLAIN :&quot;</span>);</div>
-<div class="line">  aes.<a name="a5"></a><a class="code" href="classAES.html#a6b0db893a71f8650d3e59441c23fc9dd">printArray</a>(plain);</div>
+<div class="line">  aes.<a name="a4"></a><a class="code" href="classAES.html#a6b0db893a71f8650d3e59441c23fc9dd">printArray</a>(plain);</div>
 <div class="line">  printf(<span class="stringliteral">&quot;\nCIPHER:&quot;</span>);</div>
 <div class="line">  aes.<a class="code" href="classAES.html#a6b0db893a71f8650d3e59441c23fc9dd">printArray</a>(cipher);</div>
 <div class="line">  printf(<span class="stringliteral">&quot;\nPlain2:&quot;</span>);</div>
@@ -135,7 +134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 25 2015 22:48:17 for AES Encryption Library for Arduino and Raspberry Pi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 10 2015 15:27:46 for AES Encryption Library for Arduino and Raspberry Pi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
