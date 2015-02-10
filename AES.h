@@ -139,6 +139,16 @@ class AES
 	 *
 	 */
 	byte cbc_decrypt (byte * cipher, byte * plain, int n_block, byte iv [N_BLOCK]) ;
+	
+	/** CBC decrypt a number of blocks (input and return an IV) 
+	 *  
+	 *  @param *cipher Pointer, points to the ciphertext that will be created.
+	 *  @param *plain Pointer, points to the plaintex.
+	 *  @param n_block integer, indicated the number of blocks to be ciphered.
+	 *  @Return 0 if SUCCESS or -1 if FAILURE
+	 *
+	 */
+	byte cbc_decrypt (byte * cipher, byte * plain, int n_block) ;
 		
 	/** Sets IV (initialization vector) and IVC (IV counter).
 	 *  This function changes the ivc and iv variables needed for AES.
@@ -236,6 +246,18 @@ class AES
 	 * @param *cipher pointer to the ciphertext
 	 * @param *key pointer to the key that will be used.
 	 * @param bits bits of the encryption/decrpytion
+	 * @param ivl[N_BLOCK] the initialization vector IV that will be used for encryption.
+	 * @note The key will be stored in class variable.
+	 */
+	void do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits, byte ivl [N_BLOCK]);
+	
+	/** User friendly implementation of AES-CBC encryption.
+	 * 
+	 * @param *plain pointer to the plaintext
+	 * @param size_p size of the plaintext
+	 * @param *cipher pointer to the ciphertext
+	 * @param *key pointer to the key that will be used.
+	 * @param bits bits of the encryption/decrpytion
 	 * @note The key will be stored in class variable.
 	 */
 	void do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits);
@@ -250,7 +272,18 @@ class AES
 	 * @param ivl[N_BLOCK] the initialization vector IV that will be used for decryption.
 	 * @note The key will be stored in class variable.
 	 */
-	void do_aes_dencrypt(byte *cipher,int size_c,byte *plain,byte *key, int bits, byte ivl [N_BLOCK]);
+	void do_aes_decrypt(byte *cipher,int size_c,byte *plain,byte *key, int bits, byte ivl [N_BLOCK]);
+	
+	/** User friendly implementation of AES-CBC decryption.
+	 * 
+	 * @param *cipher pointer to the ciphertext
+	 * @param size_c size of the ciphertext
+	 * @param *plain pointer to the plaintext
+	 * @param *key pointer to the key that will be used.
+	 * @param bits bits of the encryption/decrpytion
+	 * @note The key will be stored in class variable.
+	 */
+	void do_aes_decrypt(byte *cipher,int size_c,byte *plain,byte *key, int bits);
 
 	#if defined(AES_LINUX)
 		/**
