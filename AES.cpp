@@ -448,7 +448,7 @@ byte AES::cbc_decrypt (byte * cipher, byte * plain, int n_block)
 
 void AES::set_IV(unsigned long long int IVCl){
 	memcpy(iv,&IVCl,8);
-	memcpy(iv+8,&IVC,8);
+	memcpy(iv+8,&IVCl,8);
 	IVC = IVCl;
 }
 
