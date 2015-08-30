@@ -1,5 +1,5 @@
 ### TO DO
-Make the padding with PKCS#7 compatible
+
 
 ### Arduino
 just run the sketched aftel loading the libraries.
