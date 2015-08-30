@@ -1,6 +1,3 @@
-### TO DO
-
-
 ### Arduino
 just run the sketched aftel loading the libraries.
 
