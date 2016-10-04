@@ -14,7 +14,7 @@
   #include <stdlib.h>
   #include <string.h>
   #include <sys/time.h>
-  #include <unistd.h> 
+  #include <unistd.h>
 #else
   #include <Arduino.h>
 #endif
@@ -30,8 +30,14 @@
 	#define printf_P printf
 	#define PSTR(x) (x)
 #else
-	#include <avr/pgmspace.h>
+  #if (defined(__AVR__))
+  #include <avr\pgmspace.h>
+  #else
+  #include <pgmspace.h>
+  #endif
 #endif
+
+
 
 #define N_ROW                   4
 #define N_COL                   4

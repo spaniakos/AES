@@ -36,13 +36,13 @@
 /* This version derived by Mark Tillotson 2012-01-23, tidied up, slimmed down
    and tailored to 8-bit microcontroller abilities and Arduino datatypes.
 
-   The s-box and inverse s-box were retained as tables (0.5kB PROGMEM) but all 
-   the other transformations are coded to save table space.  Many efficiency 
+   The s-box and inverse s-box were retained as tables (0.5kB PROGMEM) but all
+   the other transformations are coded to save table space.  Many efficiency
    improvments to the routines mix_sub_columns() and inv_mix_sub_columns()
    (mainly common sub-expression elimination).
 
    Only the routines with precalculated subkey schedule are retained (together
-   with set_key() - this does however mean each AES object takes 240 bytes of 
+   with set_key() - this does however mean each AES object takes 240 bytes of
    RAM, alas)
 
    The CBC routines side-effect the iv argument (so that successive calls work
@@ -218,7 +218,7 @@ static void inv_mix_sub_columns (byte dt[N_BLOCK], byte st[N_BLOCK])
       byte a8 = f2(a4), b8 = f2(b4), c8 = f2(c4), d8 = f2(d4) ;
       byte a9 = a8 ^ a1,b9 = b8 ^ b1,c9 = c8 ^ c1,d9 = d8 ^ d1 ;
       byte ac = a8 ^ a4,bc = b8 ^ b4,cc = c8 ^ c4,dc = d8 ^ d4 ;
-      
+
       dt[i]         = is_box (ac^a2  ^  b9^b2  ^  cc^c1  ^  d9) ;
       dt[(i+5)&15]  = is_box (a9     ^  bc^b2  ^  c9^c2  ^  dc^d1) ;
       dt[(i+10)&15] = is_box (ac^a1  ^  b9     ^  cc^c2  ^  d9^d2) ;
@@ -257,29 +257,29 @@ byte AES::set_key (byte key [], int keylen)
   switch (keylen)
     {
     case 16:
-    case 128: 
+    case 128:
       keylen = 16; // 10 rounds
       round = 10 ;
       break;
     case 24:
-    case 192: 
+    case 192:
       keylen = 24; // 12 rounds
       round = 12 ;
       break;
     case 32:
-    case 256: 
+    case 256:
       keylen = 32; // 14 rounds
       round = 14 ;
       break;
-    default: 
-      round = 0; 
+    default:
+      round = 0;
       return FAILURE;
     }
   hi = (round + 1) << 4 ;
   copy_n_bytes (key_sched, key, keylen) ;
   byte t[4] ;
   byte next = keylen ;
-  for (byte cc = keylen, rc = 1 ; cc < hi ; cc += N_COL) 
+  for (byte cc = keylen, rc = 1 ; cc < hi ; cc += N_COL)
     {
       for (byte i = 0 ; i < N_COL ; i++)
         t[i] = key_sched [cc-4+i] ;
@@ -340,7 +340,7 @@ byte AES::encrypt (byte plain [N_BLOCK], byte cipher [N_BLOCK])
       copy_and_key (s1, plain, (byte*) (key_sched)) ;
 
       for (r = 1 ; r < round ; r++)
-        {  
+        {
           byte s2 [N_BLOCK] ;
           mix_sub_columns (s2, s1) ;
           copy_and_key (s1, s2, (byte*) (key_sched + r * N_BLOCK)) ;
@@ -411,7 +411,7 @@ byte AES::decrypt (byte plain [N_BLOCK], byte cipher [N_BLOCK])
 /******************************************************************************/
 
 byte AES::cbc_decrypt (byte * cipher, byte * plain, int n_block, byte iv [N_BLOCK])
-{   
+{
   while (n_block--)
     {
       byte tmp [N_BLOCK] ;
@@ -429,7 +429,7 @@ byte AES::cbc_decrypt (byte * cipher, byte * plain, int n_block, byte iv [N_BLOC
 /******************************************************************************/
 
 byte AES::cbc_decrypt (byte * cipher, byte * plain, int n_block)
-{   
+{
   while (n_block--)
     {
       byte tmp [N_BLOCK] ;
@@ -464,6 +464,12 @@ void AES::iv_inc(){
 
 int AES::get_size(){
 	return size;
+}
+
+/******************************************************************************/
+
+int AES::get_pad(){
+	return pad;
 }
 
 /******************************************************************************/
@@ -505,7 +511,7 @@ void AES::padPlaintext(void* in,byte* out)
 /******************************************************************************/
 
 bool AES::CheckPad(byte* in,int lsize){
-	if (in[lsize-1] <= 0x0f){	
+	if (in[lsize-1] <= 0x0f){
 		int lpad = (int)in[lsize-1];
 		for (int i = lsize - 1; i >= lsize-lpad; i--){
 			if (arr_pad[lpad - 1] != in[i]){
