@@ -29,7 +29,7 @@ void prekey (int bits)
   byte cipher[sizeof(plain_p)];
   aes.do_aes_encrypt(plain,sizeof(plain),cipher,key,bits);
   aes.get_IV(iv);
-  aes.do_aes_dencrypt(cipher,aes.get_size(),plain_p,key,bits,iv);
+  aes.do_aes_decrypt(cipher,aes.get_size(),plain_p,key,bits,iv);
   //normally u have sizeof(cipher) but if its in the same sketch you cannot determin it dynamically
 
   printf("\n\nPLAIN :");
