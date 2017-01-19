@@ -529,18 +529,10 @@ for (j = 0; j < loops; j += 1){
   if (p_pad && (j == (loops  - 1)) ) { outp = N_BLOCK - pad; }
   for (i = 0; i < outp; i++)
   {
-#if defined(ESP8266)
-	printf("%c",output[j*N_BLOCK + i]);
-#else
     printf_P(PSTR("%c"),output[j*N_BLOCK + i]);
-#endif
   }
 }
-#if defined(ESP8266)
-  printf("\n");
-#else
   printf_P(PSTR("\n"));
-#endif
 }
 
 /******************************************************************************/
@@ -549,18 +541,11 @@ void AES::printArray(byte output[],int sizel)
 {
   for (int i = 0; i < sizel; i++)
   {
-#if defined(ESP8266)
-	printf("%x", output[i]);
-#else
     printf_P(PSTR("%x"),output[i]);
-#endif
   }
-#if defined(ESP8266)
-  printf("\n");
-#else
   printf_P(PSTR("\n"));
-#endif
 }
+
 
 /******************************************************************************/
 
