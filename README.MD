@@ -1,5 +1,5 @@
 ### Arduino
-just run the sketched aftel loading the libraries.
+Just run the sketch after loading the libraries.
 
 ### Raspberry  pi
 install
