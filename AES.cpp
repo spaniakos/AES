@@ -483,7 +483,7 @@ void AES::get_IV(byte *out){
 /******************************************************************************/
 
 void AES::calc_size_n_pad(int p_size){
-	int s_of_p = p_size - 1;
+	int s_of_p = p_size;
 	if ( s_of_p % N_BLOCK == 0){
       size = s_of_p;
 	}else{
