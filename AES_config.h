@@ -30,7 +30,11 @@
 	#define printf_P printf
 	#define PSTR(x) (x)
 #else
-	#include <avr/pgmspace.h>
+    #if (defined(__AVR__))
+        #include <avr/pgmspace.h>
+    #else
+        #include <pgmspace.h>
+    #endif
 #endif
 
 #define N_ROW                   4
