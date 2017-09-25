@@ -31,7 +31,7 @@
  This is an AES implementation that uses only 8-bit byte operations on the
  cipher state.
  */
- 
+
  /* code was modified by george spanos <spaniakos@gmail.com>
  * 16/12/14
  */
@@ -49,26 +49,26 @@ class AES
 */
 	/** \fn AES()
 	* \brief AES constructor
-	* 
+	*
 	* This function initialized an instance of AES.
 	*/
 	AES();
-		
-	/** Set the cipher key for the pre-keyed version. 
+
+	/** Set the cipher key for the pre-keyed version.
 	 *  @param key[] pointer to the key string.
 	 *  @param keylen Integer that indicates the length of the key.
-	 *  @note NOTE: If the length_type used for the key length is an unsigned 8-bit character, 
-	 *  a key length of 256 bits must be entered as a length in bytes 
+	 *  @note NOTE: If the length_type used for the key length is an unsigned 8-bit character,
+	 *  a key length of 256 bits must be entered as a length in bytes
 	 *  (valid inputs are hence 128, 192, 16, 24 and 32).
 	 *
 	 */
 	byte set_key (byte key[], int keylen) ;
-	
+
 	/** clean up subkeys after use.
-	 * 
-	 */ 
+	 *
+	 */
 	void clean () ;  // delete key schedule after use
-	
+
 	/** copying and xoring utilities.
 	 *  @param *AESt byte pointer of the AEStination array.
 	 *  @param *src byte pointer of the source array.
@@ -92,9 +92,9 @@ class AES
 	 *
 	 */
 	byte encrypt (byte plain [N_BLOCK], byte cipher [N_BLOCK]) ;
-	
+
 	/** CBC encrypt a number of blocks (input and return an IV).
-	 *  
+	 *
 	 *  @param *plain Pointer, points to the plaintex.
 	 *  @param *cipher Pointer, points to the ciphertext that will be created.
 	 *  @param n_block integer, indicated the number of blocks to be ciphered.
@@ -103,9 +103,9 @@ class AES
 	 *
 	 */
 	byte cbc_encrypt (byte * plain, byte * cipher, int n_block, byte iv [N_BLOCK]) ;
-	
+
 	/** CBC encrypt a number of blocks (input and return an IV).
-	 *  
+	 *
 	 *  @param *plain Pointer, points to the plaintex.
 	 *  @param *cipher Pointer, points to the ciphertext that will be created.
 	 *  @param n_block integer, indicated the number of blocks to be ciphered.
@@ -115,7 +115,7 @@ class AES
 	byte cbc_encrypt (byte * plain, byte * cipher, int n_block) ;
 
 
-	/**  Decrypt a single block of 16 bytes 
+	/**  Decrypt a single block of 16 bytes
 	 *  @param cipher[N_BLOCK] Array of the ciphertext.
 	 *  @param plain[N_BLOCK] Array of the plaintext.
 	 *  @note The N_BLOCK is defined in AES_config.h as,
@@ -128,9 +128,9 @@ class AES
 	 *
 	 */
 	byte decrypt (byte cipher [N_BLOCK], byte plain [N_BLOCK]) ;
-	
-	/** CBC decrypt a number of blocks (input and return an IV) 
-	 *  
+
+	/** CBC decrypt a number of blocks (input and return an IV)
+	 *
 	 *  @param *cipher Pointer, points to the ciphertext that will be created.
 	 *  @param *plain Pointer, points to the plaintex.
 	 *  @param n_block integer, indicated the number of blocks to be ciphered.
@@ -139,9 +139,9 @@ class AES
 	 *
 	 */
 	byte cbc_decrypt (byte * cipher, byte * plain, int n_block, byte iv [N_BLOCK]) ;
-	
-	/** CBC decrypt a number of blocks (input and return an IV) 
-	 *  
+
+	/** CBC decrypt a number of blocks (input and return an IV)
+	 *
 	 *  @param *cipher Pointer, points to the ciphertext that will be created.
 	 *  @param *plain Pointer, points to the plaintex.
 	 *  @param n_block integer, indicated the number of blocks to be ciphered.
@@ -149,7 +149,7 @@ class AES
 	 *
 	 */
 	byte cbc_decrypt (byte * cipher, byte * plain, int n_block) ;
-		
+
 	/** Sets IV (initialization vector) and IVC (IV counter).
 	 *  This function changes the ivc and iv variables needed for AES.
 	 *
@@ -158,62 +158,64 @@ class AES
 	 *  @code unsigned long long int my_iv = 01234567; @endcode
 	*/
 	void set_IV(unsigned long long int IVCl);
-		
+
 	/** increase the iv (initialization vector) and IVC (IV counter) by 1
-	 * 
+	 *
 	 *  This function increased the VI by one step in order to have a different IV each time
-	 * 
+	 *
 	*/
 	void iv_inc();
-		
+
 	/** Getter method for size
-	 * 
+	 *
 	 * This function return the size
 	 * @return an integer, that is the size of the of the padded plaintext,
 	 * thus, the size of the ciphertext.
 	 */
 	int get_size();
-	
+
 	/** Setter method for size
 	 *
 	 * This function sets the size of the plaintext+pad
-	 * 
+	 *
 	 */
 	void set_size(int sizel);
-	
+
+  int get_pad();
+
 	/** Getter method for IV
-	* 
+	*
 	* This function return the IV
 	* @param out byte pointer that gets the IV.
 	* @return none, the IV is writed to the out pointer.
 	*/
 	void get_IV(byte *out);
-		
+
 	/** Calculates the size of the plaintext and the padding.
-	 * 
+	 *
 	 * Calculates the size of theplaintext with the padding
 	 * and the size of the padding needed. Moreover it stores them in their class variables.
-	 * 
+	 *
 	 * @param p_size the size of the byte array ex sizeof(plaintext)
 	*/
 	void calc_size_n_pad(int p_size);
-	
+
 	/** Pads the plaintext
-	 * 
-	 * This function pads the plaintext and returns an char array with the 
-	 * plaintext and the padding in order for the plaintext to be compatible with 
+	 *
+	 * This function pads the plaintext and returns an char array with the
+	 * plaintext and the padding in order for the plaintext to be compatible with
 	 * 16bit size blocks required by AES
-	 * 
+	 *
 	 * @param in the string of the plaintext in a byte array
 	 * @param out The string of the out array.
 	 * @return no return, The padded plaintext is stored in the out pointer.
 	 */
 	void padPlaintext(void* in,byte* out);
-		
+
 	/** Check the if the padding is correct.
-	 * 
+	 *
 	 * This functions checks the padding of the plaintext.
-	 * 
+	 *
 	 * @param in the string of the plaintext in a byte array
 	 * @param size the size of the string
 	 * @return true if correct / false if not
@@ -221,26 +223,26 @@ class AES
 	bool CheckPad(byte* in,int size);
 
 	/** Prints the array given.
-	 * 
-	 * This function prints the given array and pad, 
+	 *
+	 * This function prints the given array and pad,
 	 * It is mainlly used for debugging purpuses or to output the string.
-	 * 
+	 *
 	 * @param output[] the string of the text in a byte array
 	 * @param p_pad optional, used to print with out the padding characters
 	*/
 	void printArray(byte output[],bool p_pad = true);
-	
+
 	/** Prints the array given.
-	 * 
+	 *
 	 * This function prints the given array in Hexadecimal.
-	 * 
+	 *
 	 * @param output[] the string of the text in a byte array
 	 * @param sizel the size of the array.
 	*/
 	void printArray(byte output[],int sizel);
-	
+
 	/** User friendly implementation of AES-CBC encryption.
-	 * 
+	 *
 	 * @param *plain pointer to the plaintext
 	 * @param size_p size of the plaintext
 	 * @param *cipher pointer to the ciphertext
@@ -250,9 +252,9 @@ class AES
 	 * @note The key will be stored in class variable.
 	 */
 	void do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits, byte ivl [N_BLOCK]);
-	
+
 	/** User friendly implementation of AES-CBC encryption.
-	 * 
+	 *
 	 * @param *plain pointer to the plaintext
 	 * @param size_p size of the plaintext
 	 * @param *cipher pointer to the ciphertext
@@ -261,9 +263,9 @@ class AES
 	 * @note The key will be stored in class variable.
 	 */
 	void do_aes_encrypt(byte *plain,int size_p,byte *cipher,byte *key, int bits);
-	
+
 	/** User friendly implementation of AES-CBC decryption.
-	 * 
+	 *
 	 * @param *cipher pointer to the ciphertext
 	 * @param size_c size of the ciphertext
 	 * @param *plain pointer to the plaintext
@@ -273,9 +275,9 @@ class AES
 	 * @note The key will be stored in class variable.
 	 */
 	void do_aes_decrypt(byte *cipher,int size_c,byte *plain,byte *key, int bits, byte ivl [N_BLOCK]);
-	
+
 	/** User friendly implementation of AES-CBC decryption.
-	 * 
+	 *
 	 * @param *cipher pointer to the ciphertext
 	 * @param size_c size of the ciphertext
 	 * @param *plain pointer to the plaintext
@@ -319,7 +321,7 @@ class AES
  * This is an example of how to use AES in CBC mode easily.
  * The text and keys can be either in HEX or String format.<br />
  */
- 
+
  /**
  * @example aes.cpp
  * <b>For Rasberry pi</b><br>
@@ -328,7 +330,7 @@ class AES
  * This is an example of how to use AES in CBC mode easily.
  * The text and keys can be either in HEX or String format.<br />
  */
- 
+
  /**
  * @example test_vectors.ino
  * <b>For Arduino</b><br>
@@ -337,7 +339,7 @@ class AES
  * This is an example of monte carlo test vectors, in order to justify the effectiveness of the algorithm.<br />
  * plus is a classical approach to the AES encryption library with out the easy to use add-on modifications.
  */
- 
+
  /**
  * @example test_vectors.cpp
  * <b>For Rasberry pi</b><br>
@@ -361,21 +363,21 @@ class AES
  *
  * @section Acknowledgements Acknowledgements
  * This is an AES library for the Arduino, based on tzikis's AES library, which you can find <a href= "https://github.com/tzikis/arduino">here:</a>.<br />
- * Tzikis library was based on scottmac`s library, which you can find <a href="https://github.com/scottmac/arduino">here:</a><br /> 
- * 
+ * Tzikis library was based on scottmac`s library, which you can find <a href="https://github.com/scottmac/arduino">here:</a><br />
+ *
  * @section Installation Installation
  * <h3>Arduino</h3>
- * Create a folder named _AES_ in the _libraries_ folder inside your Arduino sketch folder. If the 
+ * Create a folder named _AES_ in the _libraries_ folder inside your Arduino sketch folder. If the
  * libraries folder doesn't exist, create it. Then copy everything inside. (re)launch the Arduino IDE.<br />
  * You're done. Time for a mojito
- * 
+ *
  * <h3>Raspberry  pi</h3>
  * <b>install</b><br /><br />
- * 
+ *
  * sudo make install<br />
  * cd examples_Rpi<br />
  * make<br /><br />
- * 
+ *
  * <b>What to do after changes to the library</b><br /><br />
  * sudo make clean<br />
  * sudo make install<br />
@@ -391,7 +393,7 @@ class AES
  * <b>How to start a sketch</b><br /><br />
  * cd examples_Rpi<br />
  * sudo ./<sketch><br /><br />
- * 
+ *
  * @section News News
  *
  * If issues are discovered with the documentation, please report them <a href="https://github.com/spaniakos/spaniakos.github.io/issues"> here</a>
@@ -410,6 +412,6 @@ class AES
  * - Arduino
  * - Intel Galileo support
  * - Raspberry Pi Support
- * 
+ *
  * - The library has not been tested to other boards, but it should suppport ATMega 328 based boards,Mega Boards,Arduino Due,ATTiny board
  */
