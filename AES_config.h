@@ -28,10 +28,14 @@
 	#define pgm_read_byte(p) (*(p))
 	typedef unsigned char byte;
 	#define printf_P printf
-	#define PSTR(x) (x)
+        #ifndef PSTR
+	  #define PSTR(x) (x)
+        #endif
 #elif defined ( ESP8266 )
 	#include <pgmspace.h>
-	#define PSTR(x) (x)
+        #ifndef PSTR
+          #define PSTR(x) (x)
+        #endif
 #else
     #if (defined(__AVR__))
         #include <avr/pgmspace.h>
