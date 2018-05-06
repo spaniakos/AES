@@ -547,7 +547,7 @@ void AES::printArray(byte output[],int sizel)
 {
   for (int i = 0; i < sizel; i++)
   {
-    printf_P(PSTR("%x"),output[i]);
+    printf_P(PSTR("%02x"),output[i]); // print hex in fixed 2-cgar format
   }
   printf_P(PSTR("\n"));
 }
