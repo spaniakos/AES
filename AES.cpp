@@ -507,11 +507,14 @@ void AES::padPlaintext(void* in,byte* out)
 /******************************************************************************/
 
 bool AES::CheckPad(byte* in,int lsize){
-	int lpad = (int)in[lsize-1];
-	for (int i = lsize - 1; i >= lsize-lpad; i--){
-		if (arr_pad[lpad - 1] != in[i]){
-			return false;
-		}
+	if (in[lsize-1] <= 0x10){
+		int lpad = (int)in[lsize-1];
+		for (int i = lsize - 1; i >= lsize-lpad; i--){
+			if (arr_pad[lpad - 1] != in[i]){
+				return false;
+			}
+	}else{
+		return true;
 	}
 return true;
 }
