@@ -513,6 +513,7 @@ bool AES::CheckPad(byte* in,int lsize){
 			if (arr_pad[lpad - 1] != in[i]){
 				return false;
 			}
+		}
 	}else{
 		return true;
 	}
