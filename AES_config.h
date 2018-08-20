@@ -5,7 +5,7 @@
 #ifndef __AES_CONFIG_H__
 #define __AES_CONFIG_H__
 
-#if  (defined(__linux) || defined(linux)) && !defined(__ARDUINO_X86__)
+#if  (defined(__linux) || defined(linux)) && !(defined(__ARDUINO_X86__) || defined(__arm__))
 
   #define AES_LINUX
 
@@ -22,7 +22,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#if defined(__ARDUINO_X86__) || (defined (__linux) || defined (linux))
+#if defined(__ARDUINO_X86__) || defined(__arm__) || (defined (__linux) || defined (linux))
 	#undef PROGMEM
 	#define PROGMEM __attribute__(( section(".progmem.data") ))
 	#define pgm_read_byte(p) (*(p))
